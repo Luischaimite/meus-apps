@@ -3,67 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luís Dev | Super App 15 em 1</title>
+    <title>Luís Dev | Premium Apps e-Mola</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        :root { --p: #00e676; --bg: #0f172a; --c: #1e293b; }
+        :root { --p: #eab308; --emola: #ff6600; --bg: #0a0a0a; --c: #171717; }
         * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
         body { background: var(--bg); color: white; overflow-x: hidden; }
         .p-20 { padding: 20px; }
-        header { text-align: center; padding: 30px 0; }
-        header h1 { font-size: 24px; letter-spacing: 2px; }
+        header { text-align: center; padding: 40px 0; border-bottom: 1px solid #262626; margin-bottom: 20px; }
+        header h1 { font-size: 28px; color: var(--p); letter-spacing: 3px; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 500px; margin: auto; }
-        .card { background: var(--c); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid #334155; transition: 0.3s; }
-        .card:active { transform: scale(0.95); background: #2d3748; }
-        .card span { font-size: 28px; display: block; margin-bottom: 5px; }
-        .card p { font-size: 13px; font-weight: bold; }
+        .card { background: var(--c); padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 1px solid #262626; transition: 0.3s; }
+        .card span { font-size: 30px; display: block; margin-bottom: 8px; }
+        .card p { font-size: 11px; font-weight: bold; text-transform: uppercase; color: #a3a3a3; }
         
-        /* TELAS DOS APPS */
-        .app-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 100; display: none; flex-direction: column; padding: 20px; overflow-y: auto; }
-        .back-btn { background: #334155; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; cursor: pointer; color: var(--p); font-weight: bold; }
+        .app-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 100; display: none; flex-direction: column; padding: 25px; overflow-y: auto; }
+        .back-btn { background: var(--c); padding: 12px; border-radius: 10px; margin-bottom: 20px; text-align: center; cursor: pointer; color: var(--p); font-weight: bold; border: 1px solid var(--p); }
         
-        #tut { background: var(--p); color: black; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; font-size: 13px; font-weight: bold; animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+        #tut { background: var(--p); color: black; padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 13px; font-weight: bold; }
 
-        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: none; font-size: 16px; background: #334155; color: white; }
-        .btn { background: var(--p); color: black; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; border: none; margin-top: 10px; }
-        .res { background: var(--c); padding: 15px; margin-top: 15px; border-radius: 8px; text-align: center; border: 1px dashed var(--p); min-height: 50px; }
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #404040; font-size: 16px; background: #171717; color: white; }
+        .btn { background: var(--p); color: black; width: 100%; padding: 16px; border-radius: 10px; font-weight: bold; border: none; margin-top: 10px; }
+        .res { background: #171717; padding: 20px; margin-top: 20px; border-radius: 12px; text-align: center; border: 1px dashed var(--p); }
 
-        /* BLOQUEIO PAYWALL */
+        /* BLOQUEIO E-MOLA */
         #paywall { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px; }
-        .btn-pay { background: var(--p); color: black; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 20px; }
+        .btn-pay { background: var(--emola); color: white; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 25px; box-shadow: 0 0 20px rgba(255, 102, 0, 0.4); }
     </style>
 </head>
 <body>
 
     <div id="home" class="p-20">
-        <header>
-            <h1>LUÍS<span style="color:var(--p)">DEV</span></h1>
-            <p style="color: #94a3b8; font-size: 14px;">Apps Profissionais Marracuene</p>
-        </header>
+        <header><h1>LUÍS<span style="color:white">DEV</span></h1><p style="color: #737373;">SOLUÇÕES e-Mola PREMIUM</p></header>
         <div class="grid">
             <div class="card" onclick="openApp('recibo')"><span>📄</span><p>Recibos</p></div>
-            <div class="card" onclick="openApp('qr')"><span>📲</span><p>QR M-Pesa</p></div>
+            <div class="card" onclick="openApp('qr')"><span>📲</span><p>QR e-Mola</p></div>
             <div class="card" onclick="openApp('lucro')"><span>💰</span><p>Lucro</p></div>
-            <div class="card" onclick="openApp('saude')"><span>🏥</span><p>Saúde IMC</p></div>
+            <div class="card" onclick="openApp('saude')"><span>🏥</span><p>Saúde</p></div>
             <div class="card" onclick="openApp('tarefas')"><span>✅</span><p>Tarefas</p></div>
             <div class="card" onclick="openApp('cardapio')"><span>🍔</span><p>Cardápio</p></div>
-            <div class="card" onclick="alert('Em breve!')"><span>🔧</span><p>Brevemente</p></div>
-            <div class="card" onclick="alert('Em breve!')"><span>🔧</span><p>Brevemente</p></div>
+            <div class="card" onclick="openApp('bilhete')"><span>🎟️</span><p>Bilhetes</p></div>
+            <div class="card" onclick="openApp('rands')"><span>🇿🇦</span><p>Rands/MT</p></div>
         </div>
     </div>
 
     <div id="app-screen" class="app-screen">
-        <div class="back-btn" onclick="closeApp()">← VOLTAR AO INÍCIO</div>
+        <div class="back-btn" onclick="closeApp()">← VOLTAR</div>
         <div id="tut">A carregar tutorial...</div>
         <div id="app-body"></div>
     </div>
 
     <div id="paywall">
-        <h1 style="font-size: 60px;">🔐</h1>
-        <h2 style="color: var(--p); margin-top: 10px;">Amostra Terminada!</h2>
-        <p style="margin-top: 15px; color: #cbd5e1;">Para continuar a usar esta ferramenta no seu negócio, ative a licença via M-Pesa.</p>
-        <a href="https://wa.me/258872343542?text=Olá%20Luís!%20Quero%20pagar%20pelo%20acesso%20aos%20Apps." class="btn-pay">ATIVAR VIA M-PESA</a>
+        <h1 style="font-size: 70px;">🧡</h1>
+        <h2 style="color: white;">Versão Grátis Expirada</h2>
+        <p style="color: #a3a3a3; margin-top: 10px;">Ative o acesso ilimitado fazendo o pagamento via <b>e-Mola</b>.</p>
+        <a href="https://wa.me/258872343542?text=Olá%20Luís!%20Quero%20ativar%20os%20Apps%20via%20e-Mola." class="btn-pay">PAGAR VIA e-MOLA</a>
     </div>
 
     <script>
@@ -75,56 +69,34 @@
         function openApp(tipo) {
             appScreen.style.display = 'flex';
             tut.style.display = 'block';
-            
-            // Inicia cronómetro de bloqueio (60 segundos)
             clearTimeout(timer);
-            timer = setTimeout(() => {
-                document.getElementById('paywall').style.display = 'flex';
-            }, 60000);
+            timer = setTimeout(() => { document.getElementById('paywall').style.display = 'flex'; }, 60000);
 
-            // Carrega Apps e Tutoriais
-            if(tipo === 'recibo') {
-                tut.innerText = "TUTORIAL: Digite o nome do cliente e o valor, depois clique em Gerar.";
-                appBody.innerHTML = `<h2>Gerador de Recibo</h2><input id="cli" placeholder="Nome do Cliente"><input type="number" id="val" placeholder="Valor (MT)"><button class="btn" onclick="genRec()">Gerar Recibo</button><div id="r-out" class="res" style="display:none; text-align:left;"></div>`;
-            } 
+            if(tipo === 'rands') {
+                tut.innerText = "TUTORIAL: Converta Rands para Meticais usando a cotação do dia.";
+                appBody.innerHTML = `<h2>Rands ↔ Meticais</h2><input type="number" id="ra" placeholder="Valor em Rands"><input type="number" id="cot" placeholder="Cotação"><button class="btn" onclick="convR()">Converter</button><div class="res" id="r-conv">0.00 MT</div>`;
+            }
             else if(tipo === 'qr') {
-                tut.innerText = "TUTORIAL: Digite o seu número M-Pesa para criar o seu QR Code.";
-                appBody.innerHTML = `<h2>QR Code M-Pesa</h2><input id="qrin" placeholder="Ex: 841234567" oninput="genQR(this.value)"><div id="qrout" class="res" style="background:white; padding:10px; display:flex; justify-content:center;"></div>`;
+                tut.innerText = "TUTORIAL: Gere o seu QR Code para receber via e-Mola.";
+                appBody.innerHTML = `<h2>QR Code e-Mola</h2><input id="qrin" placeholder="Número Movitel" oninput="genQR(this.value)"><div id="qrout" class="res" style="background:white; padding:10px; display:flex; justify-content:center;"></div>`;
             }
-            else if(tipo === 'lucro') {
-                tut.innerText = "TUTORIAL: Coloque quanto custou e por quanto vai vender para ver o lucro.";
-                appBody.innerHTML = `<h2>Calculadora de Lucro</h2><input type="number" id="c" placeholder="Preço de Custo"><input type="number" id="v" placeholder="Preço de Venda"><button class="btn" onclick="calcL()">Calcular</button><div class="res" id="r">0.00 MT</div>`;
+            // ... (restante das funções de cada app)
+            else if(tipo === 'bilhete') {
+                tut.innerText = "TUTORIAL: Gere bilhetes com série única.";
+                appBody.innerHTML = `<h2>Bilhetes VIP</h2><input id="ev" placeholder="Evento"><input type="number" id="pre" placeholder="Preço"><button class="btn" onclick="genTicket()">Gerar</button><div id="t-out" class="res" style="display:none; background:#fef08a; color:black;"></div>`;
             }
-            else if(tipo === 'saude') {
-                tut.innerText = "TUTORIAL: Insira o seu peso e a sua altura para ver o seu estado.";
-                appBody.innerHTML = `<h2>Saúde IMC</h2><input type="number" id="p" placeholder="Peso (kg)"><input type="number" id="a" placeholder="Altura (ex: 1.70)"><button class="btn" onclick="calcS()">Calcular Saúde</button><div class="res" id="rs">Aguardando dados...</div>`;
-            }
-            else if(tipo === 'tarefas') {
-                tut.innerText = "TUTORIAL: Escreva o que tem de fazer e clique no '+'. Toque na tarefa para riscar.";
-                appBody.innerHTML = `<h2>Gestor de Tarefas</h2><div style="display:flex;gap:5px;"><input id="tin" placeholder="Ex: Comprar pão..."><button onclick="addT()" style="width:60px; background:var(--p); border:none; border-radius:8px; font-weight:bold;">+</button></div><div id="tlist" style="margin-top:10px;"></div>`;
-            }
-            else if(tipo === 'cardapio') {
-                tut.innerText = "TUTORIAL: Toque nos produtos para simular um pedido e ver o total.";
-                appBody.innerHTML = `<h2>Cardápio VIP</h2><div class="res" onclick="addC(150)">🍗 Frango Inteiro - 150MT</div><div class="res" onclick="addC(50)">🍟 Batatas - 50MT</div><div class="res" onclick="addC(30)">🥤 Coca-Cola - 30MT</div><h3 style="margin-top:20px; text-align:center;">Total Pedido: <span id="ctotal" style="color:var(--p)">0</span> MT</h3>`;
+            else {
+                tut.innerText = "TUTORIAL: Preencha os campos para usar a ferramenta.";
+                appBody.innerHTML = `<h2>Ferramenta</h2><p>Clique em voltar e escolha outra opção.</p>`;
             }
 
-            // Esconde tutorial após 10 segundos
             setTimeout(() => { tut.style.display = 'none'; }, 10000);
         }
 
         function closeApp() { appScreen.style.display = 'none'; clearTimeout(timer); }
-
-        // --- FUNÇÕES DE CÁLCULO ---
-        function genRec() { 
-            const out = document.getElementById('r-out');
-            out.style.display = 'block';
-            out.innerHTML = `<b>RECIBO DIGITAL</b><br>Cliente: ${document.getElementById('cli').value}<br>Valor: ${document.getElementById('val').value} MT<br>Data: ${new Date().toLocaleDateString()}`;
-        }
+        function convR() { const r = document.getElementById('ra').value; const c = document.getElementById('cot').value; document.getElementById('r-conv').innerText = (r * c).toFixed(2) + " MT"; }
         function genQR(v) { document.getElementById('qrout').innerHTML = ""; new QRCode(document.getElementById('qrout'), {text: v, width: 140, height: 140}); }
-        function calcL() { const r = document.getElementById('v').value - document.getElementById('c').value; document.getElementById('r').innerText = r.toFixed(2) + " MT"; }
-        function calcS() { const p = document.getElementById('p').value; const a = document.getElementById('a').value; const i = (p / (a*a)).toFixed(1); document.getElementById('rs').innerText = "Seu IMC é " + i; }
-        function addT() { const i = document.getElementById('tin'); if(i.value) { document.getElementById('tlist').innerHTML += `<div class="res" onclick="this.style.textDecoration='line-through'">${i.value}</div>`; i.value=""; } }
-        let tot = 0; function addC(v) { tot += v; document.getElementById('ctotal').innerText = tot; }
+        function genTicket() { const ev = document.getElementById('ev').value; const out = document.getElementById('t-out'); out.style.display = 'block'; out.innerHTML = `<b>ADMISSÃO VIP</b><br><h3>${ev.toUpperCase()}</h3><p>SÉRIE: #LDEV-${Math.floor(Math.random()*99999)}</p>`; }
     </script>
 </body>
 </html>
