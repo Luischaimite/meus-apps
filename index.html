@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luís Dev | Super App</title>
+    <title>Luís Dev | Super App 15 em 1</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root { --p: #00e676; --bg: #0f172a; --c: #1e293b; }
         * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
-        body { background: var(--bg); color: white; }
+        body { background: var(--bg); color: white; overflow-x: hidden; }
         .p-20 { padding: 20px; }
         header { text-align: center; padding: 30px 0; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 500px; margin: auto; }
-        .card { background: var(--c); padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 1px solid #334155; }
-        .card span { font-size: 30px; display: block; margin-bottom: 5px; }
+        header h1 { font-size: 24px; letter-spacing: 2px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 500px; margin: auto; }
+        .card { background: var(--c); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid #334155; transition: 0.3s; }
+        .card:active { transform: scale(0.95); background: #2d3748; }
+        .card span { font-size: 28px; display: block; margin-bottom: 5px; }
+        .card p { font-size: 13px; font-weight: bold; }
         
         /* TELAS DOS APPS */
         .app-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 100; display: none; flex-direction: column; padding: 20px; overflow-y: auto; }
-        .back-btn { background: #334155; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center; cursor: pointer; color: var(--p); font-weight: bold; }
+        .back-btn { background: #334155; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; cursor: pointer; color: var(--p); font-weight: bold; }
         
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; font-size: 16px; }
+        #tut { background: var(--p); color: black; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; font-size: 13px; font-weight: bold; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
+        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: none; font-size: 16px; background: #334155; color: white; }
         .btn { background: var(--p); color: black; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; border: none; margin-top: 10px; }
-        .res { background: var(--c); padding: 15px; margin-top: 15px; border-radius: 8px; text-align: center; border: 1px dashed var(--p); }
+        .res { background: var(--c); padding: 15px; margin-top: 15px; border-radius: 8px; text-align: center; border: 1px dashed var(--p); min-height: 50px; }
 
         /* BLOQUEIO PAYWALL */
         #paywall { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px; }
@@ -33,62 +39,92 @@
     <div id="home" class="p-20">
         <header>
             <h1>LUÍS<span style="color:var(--p)">DEV</span></h1>
-            <p>Soluções Digitais em Marracuene</p>
+            <p style="color: #94a3b8; font-size: 14px;">Apps Profissionais Marracuene</p>
         </header>
         <div class="grid">
             <div class="card" onclick="openApp('recibo')"><span>📄</span><p>Recibos</p></div>
-            <div class="card" onclick="openApp('qr')"><span>📲</span><p>QR Code</p></div>
+            <div class="card" onclick="openApp('qr')"><span>📲</span><p>QR M-Pesa</p></div>
             <div class="card" onclick="openApp('lucro')"><span>💰</span><p>Lucro</p></div>
-            <div class="card" onclick="openApp('saude')"><span>🏥</span><p>Saúde</p></div>
+            <div class="card" onclick="openApp('saude')"><span>🏥</span><p>Saúde IMC</p></div>
             <div class="card" onclick="openApp('tarefas')"><span>✅</span><p>Tarefas</p></div>
             <div class="card" onclick="openApp('cardapio')"><span>🍔</span><p>Cardápio</p></div>
+            <div class="card" onclick="alert('Em breve!')"><span>🔧</span><p>Brevemente</p></div>
+            <div class="card" onclick="alert('Em breve!')"><span>🔧</span><p>Brevemente</p></div>
         </div>
     </div>
 
     <div id="app-screen" class="app-screen">
-        <div class="back-btn" onclick="closeApp()">← VOLTAR</div>
+        <div class="back-btn" onclick="closeApp()">← VOLTAR AO INÍCIO</div>
+        <div id="tut">A carregar tutorial...</div>
         <div id="app-body"></div>
     </div>
 
     <div id="paywall">
-        <h1 style="font-size: 50px;">🔐</h1>
-        <h2 style="color: var(--p);">Tempo Expirado!</h2>
-        <p style="margin-top: 10px;">Para continuar a usar este app no seu negócio, faça o pagamento via M-Pesa.</p>
-        <a href="https://wa.me/258872343542?text=Olá%20Luís!%20Quero%20pagar%20pelo%20acesso%20total." class="btn-pay">PAGAR VIA M-PESA</a>
+        <h1 style="font-size: 60px;">🔐</h1>
+        <h2 style="color: var(--p); margin-top: 10px;">Amostra Terminada!</h2>
+        <p style="margin-top: 15px; color: #cbd5e1;">Para continuar a usar esta ferramenta no seu negócio, ative a licença via M-Pesa.</p>
+        <a href="https://wa.me/258872343542?text=Olá%20Luís!%20Quero%20pagar%20pelo%20acesso%20aos%20Apps." class="btn-pay">ATIVAR VIA M-PESA</a>
     </div>
 
     <script>
         let timer;
         const appScreen = document.getElementById('app-screen');
         const appBody = document.getElementById('app-body');
+        const tut = document.getElementById('tut');
 
         function openApp(tipo) {
             appScreen.style.display = 'flex';
+            tut.style.display = 'block';
             
-            // Inicia cronómetro de 1 minuto
+            // Inicia cronómetro de bloqueio (60 segundos)
             clearTimeout(timer);
             timer = setTimeout(() => {
                 document.getElementById('paywall').style.display = 'flex';
             }, 60000);
 
-            // Carrega o conteúdo do App
-            if(tipo === 'qr') {
-                appBody.innerHTML = `<h2>Gerador de QR Code</h2><input id="qrin" placeholder="Número M-Pesa" oninput="genQR(this.value)"><div id="qrout" class="res" style="background:white; padding:10px; min-height:150px;"></div>`;
-            } else if(tipo === 'lucro') {
-                appBody.innerHTML = `<h2>Calculadora de Lucro</h2><input type="number" id="c" placeholder="Custo"><input type="number" id="v" placeholder="Venda"><button class="btn" onclick="calcL()">Calcular</button><div class="res" id="r">0.00 MT</div>`;
-            } else if(tipo === 'saude') {
-                appBody.innerHTML = `<h2>Saúde IMC</h2><input type="number" id="p" placeholder="Peso (kg)"><input type="number" id="a" placeholder="Altura (ex: 1.70)"><button class="btn" onclick="calcS()">Verificar</button><div class="res" id="rs">Seu IMC aparecerá aqui</div>`;
-            } else {
-                appBody.innerHTML = `<h2>App em Manutenção</h2><p>O Luís está a atualizar este app para si!</p>`;
+            // Carrega Apps e Tutoriais
+            if(tipo === 'recibo') {
+                tut.innerText = "TUTORIAL: Digite o nome do cliente e o valor, depois clique em Gerar.";
+                appBody.innerHTML = `<h2>Gerador de Recibo</h2><input id="cli" placeholder="Nome do Cliente"><input type="number" id="val" placeholder="Valor (MT)"><button class="btn" onclick="genRec()">Gerar Recibo</button><div id="r-out" class="res" style="display:none; text-align:left;"></div>`;
+            } 
+            else if(tipo === 'qr') {
+                tut.innerText = "TUTORIAL: Digite o seu número M-Pesa para criar o seu QR Code.";
+                appBody.innerHTML = `<h2>QR Code M-Pesa</h2><input id="qrin" placeholder="Ex: 841234567" oninput="genQR(this.value)"><div id="qrout" class="res" style="background:white; padding:10px; display:flex; justify-content:center;"></div>`;
             }
+            else if(tipo === 'lucro') {
+                tut.innerText = "TUTORIAL: Coloque quanto custou e por quanto vai vender para ver o lucro.";
+                appBody.innerHTML = `<h2>Calculadora de Lucro</h2><input type="number" id="c" placeholder="Preço de Custo"><input type="number" id="v" placeholder="Preço de Venda"><button class="btn" onclick="calcL()">Calcular</button><div class="res" id="r">0.00 MT</div>`;
+            }
+            else if(tipo === 'saude') {
+                tut.innerText = "TUTORIAL: Insira o seu peso e a sua altura para ver o seu estado.";
+                appBody.innerHTML = `<h2>Saúde IMC</h2><input type="number" id="p" placeholder="Peso (kg)"><input type="number" id="a" placeholder="Altura (ex: 1.70)"><button class="btn" onclick="calcS()">Calcular Saúde</button><div class="res" id="rs">Aguardando dados...</div>`;
+            }
+            else if(tipo === 'tarefas') {
+                tut.innerText = "TUTORIAL: Escreva o que tem de fazer e clique no '+'. Toque na tarefa para riscar.";
+                appBody.innerHTML = `<h2>Gestor de Tarefas</h2><div style="display:flex;gap:5px;"><input id="tin" placeholder="Ex: Comprar pão..."><button onclick="addT()" style="width:60px; background:var(--p); border:none; border-radius:8px; font-weight:bold;">+</button></div><div id="tlist" style="margin-top:10px;"></div>`;
+            }
+            else if(tipo === 'cardapio') {
+                tut.innerText = "TUTORIAL: Toque nos produtos para simular um pedido e ver o total.";
+                appBody.innerHTML = `<h2>Cardápio VIP</h2><div class="res" onclick="addC(150)">🍗 Frango Inteiro - 150MT</div><div class="res" onclick="addC(50)">🍟 Batatas - 50MT</div><div class="res" onclick="addC(30)">🥤 Coca-Cola - 30MT</div><h3 style="margin-top:20px; text-align:center;">Total Pedido: <span id="ctotal" style="color:var(--p)">0</span> MT</h3>`;
+            }
+
+            // Esconde tutorial após 10 segundos
+            setTimeout(() => { tut.style.display = 'none'; }, 10000);
         }
 
         function closeApp() { appScreen.style.display = 'none'; clearTimeout(timer); }
 
-        // Funções dos Apps
-        function genQR(val) { document.getElementById('qrout').innerHTML = ""; new QRCode(document.getElementById('qrout'), {text: val, width: 150, height: 150}); }
-        function calcL() { const res = document.getElementById('v').value - document.getElementById('c').value; document.getElementById('r').innerText = res.toFixed(2) + " MT"; }
-        function calcS() { const p = document.getElementById('p').value; const a = document.getElementById('a').value; const imc = (p / (a * a)).toFixed(1); document.getElementById('rs').innerText = "IMC: " + imc; }
+        // --- FUNÇÕES DE CÁLCULO ---
+        function genRec() { 
+            const out = document.getElementById('r-out');
+            out.style.display = 'block';
+            out.innerHTML = `<b>RECIBO DIGITAL</b><br>Cliente: ${document.getElementById('cli').value}<br>Valor: ${document.getElementById('val').value} MT<br>Data: ${new Date().toLocaleDateString()}`;
+        }
+        function genQR(v) { document.getElementById('qrout').innerHTML = ""; new QRCode(document.getElementById('qrout'), {text: v, width: 140, height: 140}); }
+        function calcL() { const r = document.getElementById('v').value - document.getElementById('c').value; document.getElementById('r').innerText = r.toFixed(2) + " MT"; }
+        function calcS() { const p = document.getElementById('p').value; const a = document.getElementById('a').value; const i = (p / (a*a)).toFixed(1); document.getElementById('rs').innerText = "Seu IMC é " + i; }
+        function addT() { const i = document.getElementById('tin'); if(i.value) { document.getElementById('tlist').innerHTML += `<div class="res" onclick="this.style.textDecoration='line-through'">${i.value}</div>`; i.value=""; } }
+        let tot = 0; function addC(v) { tot += v; document.getElementById('ctotal').innerText = tot; }
     </script>
 </body>
 </html>
