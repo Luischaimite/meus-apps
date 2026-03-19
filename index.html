@@ -98,5 +98,13 @@
         function genQR(v) { document.getElementById('qrout').innerHTML = ""; new QRCode(document.getElementById('qrout'), {text: v, width: 140, height: 140}); }
         function genTicket() { const ev = document.getElementById('ev').value; const out = document.getElementById('t-out'); out.style.display = 'block'; out.innerHTML = `<b>ADMISSÃO VIP</b><br><h3>${ev.toUpperCase()}</h3><p>SÉRIE: #LDEV-${Math.floor(Math.random()*99999)}</p>`; }
     </script>
+  window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const meuApp = urlParams.get('app');
+    if (meuApp) {
+        openApp(meuApp);
+    }
+}
+
 </body>
 </html>
